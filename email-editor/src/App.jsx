@@ -4,16 +4,16 @@ import { Header } from "./Header"
 
 export function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false)
-  
+
   return (
   <div className={styles.layout}>
 
     <Header isLoggedIn={isLoggedIn} />
 
     {isLoggedIn ? (
-      <button onClick={() => setIsLoggedIn(false)}>False</button>
+      <button onClick={() => setIsLoggedIn(false)}>Exit from system</button>
     ) : (
-      <button onClick={() => setIsLoggedIn(true)}></button>
+      <button onClick={() => setIsLoggedIn(true)}>Enter</button>
     )}
   </div>
   )
