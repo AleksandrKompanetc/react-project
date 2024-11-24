@@ -1,4 +1,6 @@
-export function Details({details, handleLoading}) {
+import { memo } from "react"
+
+function InitialDetails({details, handleLoading}) {
   return (
     <div>
       <h1>{details.title}</h1>
@@ -7,3 +9,5 @@ export function Details({details, handleLoading}) {
     </div>
   )
 }
+
+export const Details = memo(InitialDetails)

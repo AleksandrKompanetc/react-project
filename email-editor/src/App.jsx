@@ -12,6 +12,13 @@ export function App() {
     buttonText: 'Click'
   })
 
+  const [count, setCount] = useState(0)
+  const [multiplier, setMultiplier] = useState(10)
+
+  const result = useMemo(() => {
+    return count * multiplier 
+  }, [])
+
   const handleLoading = useCallback(() => {
     setDetails(prev => ({ ...prev, isLoading: !prev.isLoading }))
   }, [])
@@ -40,6 +47,11 @@ export function App() {
   return (
     <div className={styles.layout}>
       <img src='/nature.jpeg' width={400} alt="" />
+
+      <div>Resultat: {Result}</div>
+
+      <button onClick={() => setCount(count + 1)}>Add counter</button>
+      <button onClick={() => setMultiplier(multiplier + 10)}>Add multyply</button>
 
       {details.isLoading && <p>Loading...</p> }
 
