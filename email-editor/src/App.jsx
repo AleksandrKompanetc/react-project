@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from 'react'
+import { useEffect, useState, useRef, useCallback } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import styles from './App.module.scss'
@@ -12,36 +12,41 @@ export function App() {
     buttonText: 'Click'
   })
 
-  useEffect(() => {
-    const timeout = setTimeout(() => {
-      setDetails(prev => ({...prev, isLoading: false}))
-    }, 2000)
-    return () => {
-      clearTimeout(timeout)
-    }
+  const handleLoading = useCallback(() => {
+    setDetails(prev => ({ ...prev, isLoading: !prev.isLoading }))
   }, [])
 
-  useEffect(() => {
-    setDetails(prev => ({...prev, description: 'title has changed'}) )
-  }, [details.title])
+  // useEffect(() => {
+  //   const timeout = setTimeout(() => {
+  //     setDetails(prev => ({...prev, isLoading: false}))
+  //   }, 2000)
+  //   return () => {
+  //     clearTimeout(timeout)
+  //   }
+  // }, [])
 
-  const imageRef = useRef(null)
+  // useEffect(() => {
+  //   setDetails(prev => ({...prev, description: 'title has changed'}) )
+  // }, [details.title])
 
-  const onClick = () => {
-    if (!imageRef.current) return
-    imageRef.current.style.borderRadius = '20px'
-    imageRef.current.style.boxShadow = '0 3px 6px rgba(0, 0, 0, .1)'
-  }
+  // const imageRef = useRef(null)
+
+  // const onClick = () => {
+  //   if (!imageRef.current) return
+  //   imageRef.current.style.borderRadius = '20px'
+  //   imageRef.current.style.boxShadow = '0 3px 6px rgba(0, 0, 0, .1)'
+  // }
 
   return (
     <div className={styles.layout}>
-      <img ref={imageRef} src='/nature.jpeg' width={400} alt="" />
+      <img src='/nature.jpeg' width={400} alt="" />
 
-      <button onClick={onClick}>ChangeImage</button>
+      {details.isLoading && <p>Loading...</p> }
 
-      {details.isLoading ? (<p>Loading...</p>) : (
-        <Details details={details} setDetails={setDetails} />
-      )}
+      <Details
+        details={details}
+        handleLoading={handleLoading}
+      />
     </div>
   )
 }

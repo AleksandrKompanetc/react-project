@@ -1,14 +1,9 @@
-export function Details({details, setDetails}) {
+export function Details({details, handleLoading}) {
   return (
     <div>
       <h1>{details.title}</h1>
       <div>{details.description}</div>
-      <button onClick={() => setDetails(prev => {
-        return {
-          ...prev,
-          title: prev.title + '!!!',
-        }
-      })}>{details.buttonText}</button>
+      <button onClick={handleLoading}>{details.buttonText}</button>
     </div>
   )
 }
