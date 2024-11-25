@@ -2,9 +2,10 @@ import { useContext } from 'react'
 import { AuthContext } from './AuthContext'
 import styles from './App.module.scss'
 import { Header } from "./Header"
+import { useAuth } from './hooks/useAuth'
 
 export function App() {
-  const {isLoggedIn, setIsLoggedIn} = useContext(AuthContext)
+  const {isLoggedIn, setIsLoggedIn} = useAuth()
   return (
   <div className={styles.layout}>
 
