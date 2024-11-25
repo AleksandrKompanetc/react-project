@@ -1,22 +1,39 @@
-import { useContext } from 'react'
+import { useEffect } from 'react'
 import { AuthContext } from './AuthContext'
 import styles from './App.module.scss'
 import { Header } from "./Header"
 import { useAuth } from './hooks/useAuth'
+import { Linter } from 'eslint'
 
 export function App() {
-  const {isLoggedIn, setIsLoggedIn} = useAuth()
+  // const {isLoggedIn, setIsLoggedIn} = useAuth()
+  const [todos, setTodos] = useState([])
+  useEffect(() => {
+    fetch('https://jsonplaceholder.typicode.com/todos')
+    .then(response => response.json)
+    .then(json => {
+      setTodos(json)
+    })
+  }, [])
+
   return (
-  <div className={styles.layout}>
+    <div className={styles.layout}>
+      <ul>
+        {todos?.map(todo => (
+          <li key={todo.id}>{todo.title}</li>
+        ))}
+      </ul>
+    </div>
+  // <div className={styles.layout}>
 
-    <Header />
+  //   <Header />
 
-    {isLoggedIn ? (
-      <button onClick={() => setIsLoggedIn(false)}>Exit from system</button>
-    ) : (
-      <button onClick={() => setIsLoggedIn(true)}>Enter</button>
-    )}
-  </div>
+  //   {isLoggedIn ? (
+  //     <button onClick={() => setIsLoggedIn(false)}>Exit from system</button>
+  //   ) : (
+  //     <button onClick={() => setIsLoggedIn(true)}>Enter</button>
+  //   )}
+  // </div>
   )
 }
 
