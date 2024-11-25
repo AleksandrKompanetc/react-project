@@ -9,11 +9,17 @@ export function App() {
   // const {isLoggedIn, setIsLoggedIn} = useAuth()
   const [todos, setTodos] = useState([])
   useEffect(() => {
-    fetch('https://jsonplaceholder.typicode.com/todos')
-    .then(response => response.json)
-    .then(json => {
-      setTodos(json)
-    })
+    const fetchData = async () => {
+      const response = await fetch('https://jsonplaceholder.typicode.com/todos')
+      const data = await response.json()
+      setTodos(data)
+    }
+    fetchData()
+    // fetch('https://jsonplaceholder.typicode.com/todos')
+    // .then(response => response.json)
+    // .then(json => {
+    //   setTodos(json)
+    // })
   }, [])
 
   return (
