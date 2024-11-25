@@ -1,14 +1,14 @@
-import { useState } from "react"
+import { useContext } from 'react'
+import { AuthContext } from './AuthContext'
 import styles from './App.module.scss'
 import { Header } from "./Header"
 
 export function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false)
-
+  const {isLoggedIn, setIsLoggedIn} = useContext(AuthContext)
   return (
   <div className={styles.layout}>
 
-    <Header isLoggedIn={isLoggedIn} />
+    <Header />
 
     {isLoggedIn ? (
       <button onClick={() => setIsLoggedIn(false)}>Exit from system</button>
