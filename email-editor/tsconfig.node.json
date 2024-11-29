@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "module": "CommonJS",            // Используется для Node.js
+    "target": "ESNext",              // Поддержка последних возможностей ECMAScript
+    "esModuleInterop": true,         // Улучшает совместимость с ES модулями
+    "strict": true,                  // Включает строгий режим TypeScript
+    "baseUrl": ".",                  // Базовый путь для модулей
+    "paths": {
+      "@/*": ["src/*"]               // Псевдонимы путей для более удобного импорта
+    },
+    "outDir": "./dist",              // Директория для выходных файлов
+    "rootDir": "./src"               // Исходная директория
+  },
+  "include": ["src/**/*.ts"],        // Какие файлы включать
+  "exclude": ["node_modules"]        // Исключение node_modules
+}
